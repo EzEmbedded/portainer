@@ -1,11 +1,15 @@
+import _ from 'lodash-es';
+
 export default class KubernetesRegistryAccessController {
   /* @ngInject */
-  constructor($async, $state, EndpointService, Notifications, KubernetesResourcePoolService, KubernetesNamespaceHelper) {
+  constructor($async, $state, ModalService, EndpointService, Notifications, KubernetesResourcePoolService, KubernetesNamespaceHelper, KubernetesApplicationService) {
     this.$async = $async;
     this.$state = $state;
+    this.ModalService = ModalService;
     this.Notifications = Notifications;
     this.KubernetesResourcePoolService = KubernetesResourcePoolService;
     this.KubernetesNamespaceHelper = KubernetesNamespaceHelper;
+    this.KubernetesApplicationService = KubernetesApplicationService;
     this.EndpointService = EndpointService;
 
     this.state = {
@@ -24,9 +28,29 @@ export default class KubernetesRegistryAccessController {
   }
 
   handleRemove(namespaces) {
-    const removeNamespaces = namespaces.map(({ value }) => value);
+    return this.$async(async () => {
+      try {
+        const removeNamespaces = namespaces.map(({ value }) => value);
+        const apps = _.flatten(await Promise.all(_.map(removeNamespaces, (ns) => this.KubernetesApplicationService.get(ns))));
+        const appsRegistries = _.map(apps, 'RegistryId');
+        const appsUsingRegistry = _.includes(appsRegistries, this.registry.Id);
+        const nsToUpdate = this.savedResourcePools.map(({ value }) => value).filter((value) => !removeNamespaces.includes(value));
 
-    return this.updateNamespaces(this.savedResourcePools.map(({ value }) => value).filter((value) => !removeNamespaces.includes(value)));
+        if (appsUsingRegistry) {
+          const displayedMessage =
+            'This registry is currently used by one or more applications inside this environment. Removing the registry access could lead to a service interruption for these applications.<br/><br/>Do you wish to continue?';
+          this.ModalService.confirmUpdate(displayedMessage, (confirmed) => {
+            if (confirmed) {
+              return this.updateNamespaces(nsToUpdate);
+            }
+          });
+        } else {
+          return this.updateNamespaces(nsToUpdate);
+        }
+      } catch (err) {
+        this.Notifications.error('Failure', err, 'Failed saving registry access');
+      }
+    });
   }
 
   updateNamespaces(namespaces) {

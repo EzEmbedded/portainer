@@ -170,6 +170,12 @@ class KubernetesResourcePoolController {
     return false;
   }
 
+  getRegistriesToDeleteUsedByRunningApps() {
+    const registriesToDelete = _.filter(this.registries, { WasChecked: true, Checked: false });
+    const registriesUsedByApps = _.intersectionWith(registriesToDelete, this.applications, (reg, app) => reg.Id === app.RegistryId);
+    return registriesUsedByApps;
+  }
+
   /* #region  UPDATE NAMESPACE */
   async updateResourcePoolAsync() {
     this.state.actionInProgress = true;
@@ -186,20 +192,26 @@ class KubernetesResourcePoolController {
   }
 
   updateResourcePool() {
-    const willBeDeleted = _.filter(this.formValues.IngressClasses, { WasSelected: true, Selected: false });
+    const ingressesToDelete = _.filter(this.formValues.IngressClasses, { WasSelected: true, Selected: false });
+    const registriesToDeleteUsedByApps = this.getRegistriesToDeleteUsedByRunningApps();
     const warnings = {
       quota: this.hasResourceQuotaBeenReduced(),
-      ingress: willBeDeleted.length !== 0,
+      ingress: ingressesToDelete.length !== 0,
+      registries: registriesToDeleteUsedByApps.length !== 0,
     };
 
-    if (warnings.quota || warnings.ingress) {
+    if (warnings.quota || warnings.ingress || warnings.registries) {
       const messages = {
         quota:
           'Reducing the quota assigned to an "in-use" namespace may have unintended consequences, including preventing running applications from functioning correctly and potentially even blocking them from running at all.',
         ingress: 'Deactivating ingresses may cause applications to be unaccessible. All ingress configurations from affected applications will be removed.',
+        registries:
+          'Some registries you removed are currently used by one or more applications inside this environment. Removing the registries accesses could lead to a service interruption for these applications.',
       };
-      const displayedMessage = `${warnings.quota ? messages.quota : ''}${warnings.quota && warnings.ingress ? '<br/><br/>' : ''}
-      ${warnings.ingress ? messages.ingress : ''}<br/><br/>Do you wish to continue?`;
+      const displayedMessage = `${warnings.quota ? messages.quota + '<br/><br/>' : ''}
+      ${warnings.ingress ? messages.ingress + '<br/><br/>' : ''}
+      ${warnings.registries ? messages.registries + '<br/><br/>' : ''}
+      Do you wish to continue?`;
       this.ModalService.confirmUpdate(displayedMessage, (confirmed) => {
         if (confirmed) {
           return this.$async(this.updateResourcePoolAsync);
@@ -289,6 +301,7 @@ class KubernetesResourcePoolController {
           this.registries.forEach((reg) => {
             if (reg.RegistryAccesses && reg.RegistryAccesses[this.endpoint.Id] && reg.RegistryAccesses[this.endpoint.Id].Namespaces.includes(namespace)) {
               reg.Checked = true;
+              reg.WasChecked = true;
               this.formValues.Registries.push(reg);
             }
           });
