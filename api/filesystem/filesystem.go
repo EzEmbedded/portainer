@@ -578,16 +578,25 @@ func (service *Service) GetDatastorePath() string {
 	return service.dataStorePath
 }
 
+func (service *Service) wrapFileStore(filepath string) string {
+	return path.Join(service.fileStorePath, filepath)
+}
+
+func defaultCertPathUnderFileStore() (string, string) {
+	certPath := path.Join(SSLCertPath, DefaultSSLCertFilename)
+	keyPath := path.Join(SSLCertPath, DefaultSSLKeyFilename)
+	return certPath, keyPath
+}
+
 // GetDefaultSSLCertsPath returns the ssl certs path
 func (service *Service) GetDefaultSSLCertsPath() (string, string) {
-	certPath := path.Join(service.fileStorePath, SSLCertPath, DefaultSSLCertFilename)
-	keyPath := path.Join(service.fileStorePath, SSLCertPath, DefaultSSLKeyFilename)
-	return certPath, keyPath
+	certPath, keyPath := defaultCertPathUnderFileStore()
+	return service.wrapFileStore(certPath), service.wrapFileStore(keyPath)
 }
 
 // StoreSSLCertPair stores a ssl certificate pair
 func (service *Service) StoreSSLCertPair(cert, key []byte) (string, string, error) {
-	certPath, keyPath := service.GetDefaultSSLCertsPath()
+	certPath, keyPath := defaultCertPathUnderFileStore()
 
 	r := bytes.NewReader(cert)
 	err := service.createFileInStore(certPath, r)
@@ -601,7 +610,7 @@ func (service *Service) StoreSSLCertPair(cert, key []byte) (string, string, erro
 		return "", "", err
 	}
 
-	return certPath, keyPath, nil
+	return service.wrapFileStore(certPath), service.wrapFileStore(keyPath), nil
 }
 
 // CopySSLCertPair copies a ssl certificate pair
