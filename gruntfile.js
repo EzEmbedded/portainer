@@ -210,7 +210,7 @@ function shell_download_docker_compose_binary(p, a) {
   var binaryVersion = p === 'windows' ? '<%= binaries.dockerWindowsComposeVersion %>' : '<%= binaries.dockerLinuxComposeVersion %>';
 
   // plugin
-  if (p === 'linux') {
+  if (p === 'linux' && a !== 'amd64') {
     if (a === 'arm64') {
       ia = 'arm64';
     }
