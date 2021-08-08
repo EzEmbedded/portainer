@@ -1,8 +1,6 @@
 package cli
 
 import (
-	"context"
-
 	rbacv1 "k8s.io/api/rbac/v1"
 	k8serrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -36,7 +34,7 @@ func (kcl *KubeClient) createPortainerUserClusterRole() error {
 		Rules: getPortainerUserDefaultPolicies(),
 	}
 
-	_, err := kcl.cli.RbacV1().ClusterRoles().Create(context.TODO(), clusterRole, metav1.CreateOptions{})
+	_, err := kcl.cli.RbacV1().ClusterRoles().Create(clusterRole)
 	if err != nil && !k8serrors.IsAlreadyExists(err) {
 		return err
 	}

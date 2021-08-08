@@ -1139,6 +1139,7 @@ type (
 
 	// FileService represents a service for managing files
 	FileService interface {
+		GetDockerConfigPath() string
 		GetFileContent(filePath string) ([]byte, error)
 		Rename(oldPath, newPath string) error
 		RemoveDirectory(directoryPath string) error

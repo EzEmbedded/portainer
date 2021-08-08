@@ -1,7 +1,6 @@
 package kubernetes
 
 import (
-	"context"
 	"log"
 	"time"
 
@@ -34,7 +33,7 @@ func (snapshotter *Snapshotter) CreateSnapshot(endpoint *portainer.Endpoint) (*p
 }
 
 func snapshot(cli *kubernetes.Clientset, endpoint *portainer.Endpoint) (*portainer.KubernetesSnapshot, error) {
-	res := cli.RESTClient().Get().AbsPath("/healthz").Do(context.TODO())
+	res := cli.RESTClient().Get().AbsPath("/healthz").Do()
 	if res.Error() != nil {
 		return nil, res.Error()
 	}
@@ -66,7 +65,7 @@ func snapshotVersion(snapshot *portainer.KubernetesSnapshot, cli *kubernetes.Cli
 }
 
 func snapshotNodes(snapshot *portainer.KubernetesSnapshot, cli *kubernetes.Clientset) error {
-	nodeList, err := cli.CoreV1().Nodes().List(context.TODO(), metav1.ListOptions{})
+	nodeList, err := cli.CoreV1().Nodes().List(metav1.ListOptions{})
 	if err != nil {
 		return err
 	}
