@@ -50,8 +50,8 @@ function download_plugin() {
     chmod +x "dist/$TARGET_FILENAME"
 }
 
-# if [ "${PLATFORM}" == 'linux' ] && [ "${ARCH}" != 'amd64' ]; then
-download_plugin "$PLATFORM" "$ARCH" "$DOCKER_COMPOSE_VERSION"
-# fi
+if [ "${PLATFORM}" == 'linux' ] && [ "${ARCH}" != 'amd64' ]; then
+    download_plugin "$PLATFORM" "$ARCH" "$DOCKER_COMPOSE_VERSION"
+fi
 
-# download_binary "$PLATFORM" "$ARCH" "$DOCKER_COMPOSE_VERSION"
+download_binary "$PLATFORM" "$ARCH" "$DOCKER_COMPOSE_VERSION"
