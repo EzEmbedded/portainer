@@ -27,14 +27,14 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get update && apt-get -y install yarn
 
-# Install Golang
-RUN cd /tmp \
-	&& wget -q https://dl.google.com/go/${GO_VERSION}.tar.gz \
-	&& tar -xf ${GO_VERSION}.tar.gz \
-	&& mv go /usr/local
+# # Install Golang
+# RUN cd /tmp \
+# 	&& wget -q https://dl.google.com/go/${GO_VERSION}.tar.gz \
+# 	&& tar -xf ${GO_VERSION}.tar.gz \
+# 	&& mv go /usr/local
 
-# Configure Go
-ENV PATH "$PATH:/usr/local/go/bin"
+# # Configure Go
+# ENV PATH "$PATH:/usr/local/go/bin"
 
 # Confirm installation
 RUN go version && node -v && yarn -v
