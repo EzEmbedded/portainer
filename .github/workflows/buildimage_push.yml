@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 
-  build image:
+  build_image:
     runs-on: ubuntu-latest
     steps:
       -
