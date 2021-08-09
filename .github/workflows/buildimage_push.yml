@@ -24,7 +24,7 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm test 
-      - run: yarn build    
+      # - run: yarn build    
       -
         name: Docker meta
         id: meta
