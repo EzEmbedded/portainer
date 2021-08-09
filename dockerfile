@@ -9,8 +9,8 @@ WORKDIR /src/portainer
 # Set TERM as noninteractive to suppress debconf errors
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-# Set default go version
-ARG GO_VERSION=go1.16.6.linux-amd64
+# # Set default go version
+# ARG GO_VERSION=go1.16.6.linux-amd64
 
 # Install packages
 RUN apt-get update --fix-missing && apt-get install -qq \

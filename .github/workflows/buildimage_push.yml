@@ -19,7 +19,11 @@ jobs:
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: -v # will run `yarn install` command
-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm test     
       -
         name: Docker meta
         id: meta
