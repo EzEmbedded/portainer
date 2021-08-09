@@ -13,12 +13,12 @@ jobs:
         uses: actions/setup-go@v1
         with:
           go-version: '1.16.6' # The Go version to download (if necessary) and use.
-      # - 
-      #   run: go run hello.go
+      - 
+        run: go version
       - 
         uses: borales/actions-yarn@v2.3.0
-        # with:
-        #   cmd: install # will run `yarn install` command
+        with:
+          cmd: version # will run `yarn install` command
 
       -
         name: Docker meta
