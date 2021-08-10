@@ -16,7 +16,7 @@ ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 # Set TERM as noninteractive to suppress debconf errors
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn dh-autoreconf
+RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn autoreconf
 # RUN apt-get install dh-autoreconf
 # # Set default go version
 # ARG GO_VERSION=go1.16.6.linux-amd64
