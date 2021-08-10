@@ -13,11 +13,10 @@ ENV PATH=$PATH:$PROJECT_PATH/dist
 ENV CGO_ENABLED=0
 ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 
-RUN apk add --no-cache ca-certificates bash alpine-sdk
-
-
 # Set TERM as noninteractive to suppress debconf errors
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+RUN apk add --no-cache ca-certificates bash alpine-sdk
 
 # # Set default go version
 # ARG GO_VERSION=go1.16.6.linux-amd64
