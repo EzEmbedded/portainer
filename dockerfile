@@ -67,7 +67,7 @@ RUN go version && node -v && yarn -v
 
 
 
-RUN npm install
+RUN yarn install
 RUN  yarn build
 
 FROM alpine:3.13.2 AS production
