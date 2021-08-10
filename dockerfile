@@ -52,8 +52,6 @@ RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
-RUN npm install -g grunt-clinpm install 
-RUN npm install grunt
 RUN npm install grunt-config
 RUN npm install grunt-contrib-clean
 RUN npm install grunt-contrib-copy
