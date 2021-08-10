@@ -52,7 +52,7 @@ RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 
-RUN npm install -g grunt-cli
+# RUN npm install -g grunt-cli
 RUN npm install
 RUN  yarn build
 
