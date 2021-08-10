@@ -37,4 +37,4 @@ RUN apt-get update --fix-missing && apt-get install -qq \
 # ENV PATH "$PATH:/usr/local/go/bin"
 
 # Confirm installation
-RUN yarn -v
+RUN node version
