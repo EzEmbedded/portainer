@@ -51,8 +51,7 @@ RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn
 RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
-RUN ls > test.log
-RUN echo cat test.log
+RUN echo ${PROJECT_PATH}
 RUN  yarn build
 
 FROM alpine:3.13.2 AS production
