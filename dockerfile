@@ -14,7 +14,7 @@ ENV CGO_ENABLED=0
 ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 
 # Set TERM as noninteractive to suppress debconf errors
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+# RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apk add --no-cache ca-certificates bash alpine-sdk
 
