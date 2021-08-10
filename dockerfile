@@ -17,19 +17,7 @@ ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn
-RUN apk --update --no-cache \
-		automake \
-		nasm  \
-		autoconf  \
-		build-base \
-		zlib \
-		zlib-dev \
-		libpng \
-		libpng-dev\
-		libwebp \
-		libwebp-dev \
-		libjpeg-turbo \
-		libjpeg-turbo-dev
+RUN apk --update --no-cache automake nasm autoconf build-base zlib zlib-dev libpng libpng-dev libwebp libwebp-dev libjpeg-turbo libjpeg-turbo-dev
 
 
 
