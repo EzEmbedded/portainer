@@ -17,7 +17,6 @@ ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn
-RUN yarn install
 # # Set default go version
 # ARG GO_VERSION=go1.16.6.linux-amd64
 
@@ -53,22 +52,11 @@ RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
-# RUN npm install grunt
-# RUN npm install grunt-config
-# RUN npm install grunt-contrib-clean
-# RUN npm install grunt-contrib-copy
-# RUN npm install grunt-env
-# RUN npm install grunt-filerev
-# RUN npm install grunt-postcss
-# RUN npm install grunt-replace
-# RUN npm install grunt-shell-spawn
-# RUN npm install grunt-usemin
-# RUN npm install grunt-webpack
-# RUN npm install gruntify-eslint
 
 
 
 
+RUN yarn
 RUN  yarn build
 
 FROM alpine:3.13.2 AS production
