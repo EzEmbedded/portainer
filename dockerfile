@@ -51,6 +51,7 @@ RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn
 RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
+
 RUN npm install -g grunt-cli
 RUN pwd
 RUN  yarn build
