@@ -13,7 +13,7 @@ ENV PATH=$PATH:$PROJECT_PATH/dist
 ENV CGO_ENABLED=0
 ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 
-RUN apk add --no-cache ca-certificates make git bash alpine-sdk nodejs npm yarn wget build-essential curl
+RUN apk add --no-cache ca-certificates bash alpine-sdk
 
 
 # Set TERM as noninteractive to suppress debconf errors
@@ -23,14 +23,14 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # ARG GO_VERSION=go1.16.6.linux-amd64
 
 # Install packages
-# RUN apt-get update --fix-missing && apt-get install -qq \
-# 	dialog \
-# 	apt-utils \
-# 	curl \
-# 	build-essential \
-# 	nodejs \
-# 	git \
-# 	wget
+RUN apt-get update --fix-missing && apt-get install -qq \
+	dialog \
+	apt-utils \
+	curl \
+	build-essential \
+	nodejs \
+	git \
+	wget
 
 # Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
