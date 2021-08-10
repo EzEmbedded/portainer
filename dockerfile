@@ -54,7 +54,7 @@ RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
-RUN yarn add cypress --dev
+# RUN yarn add cypress --dev
 
 
 RUN yarn
