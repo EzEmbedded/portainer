@@ -53,7 +53,7 @@ COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 
 RUN npm install -g grunt-cli
-RUN pwd
+RUN npm install grunt --save-dev
 RUN  yarn build
 
 FROM alpine:3.13.2 AS production
