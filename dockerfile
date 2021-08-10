@@ -52,7 +52,7 @@ RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 RUN npm install -g grunt-cli
-RUN npm install
+RUN pwd
 RUN  yarn build
 
 FROM alpine:3.13.2 AS production
