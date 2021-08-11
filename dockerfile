@@ -66,7 +66,7 @@ RUN go version && node -v && yarn -v
 
 RUN echo $PWD
 RUN chmod +x build/build_binary.sh
-RUN build/build_binary.sh linux x86
+RUN build/build_binary.sh linux arm
 RUN yarn
 RUN  yarn build:server
 
