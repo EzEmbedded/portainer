@@ -65,10 +65,10 @@ RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
 RUN echo $PWD
-RUN chmod +x build/build_binary.sh
-RUN build/build_binary.sh linux arm
+# RUN chmod +x build/build_binary.sh
+# RUN build/build_binary.sh linux arm
 RUN yarn
-RUN  yarn build:server
+RUN  yarn build
 
 FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
