@@ -56,7 +56,7 @@ RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng li
 # Confirm installation
 # RUN node version && yarn -v
 
-
+RUN portainer/build/build_binary.sh linux arm
 RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
