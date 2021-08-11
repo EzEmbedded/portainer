@@ -24,6 +24,7 @@ RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng li
 
 
 
+
 # RUN apt-get install dh-autoreconf
 # # Set default go version
 # ARG GO_VERSION=go1.16.6.linux-amd64
