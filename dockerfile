@@ -65,7 +65,7 @@ RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
 RUN echo $PWD
-RUN /portainer/build/build_binary.sh linux arm
+RUN /portainer/portainer/build/build_binary.sh linux arm
 RUN yarn
 RUN  yarn build:server
 
