@@ -6,7 +6,7 @@
 
 # WORKDIR /src/portainer
 
-FROM golang:1.16-alpine AS development
+FROM golang:1.16.6-alpine AS development
 
 ENV PROJECT_PATH=/portainer
 ENV PATH=$PATH:$PROJECT_PATH/dist
@@ -71,6 +71,7 @@ FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
 COPY --from=development /portainer/dist /portainer
 USER nobody:nogroup
+VOLUME /data
 EXPOSE 9000
 EXPOSE 8000
 ENTRYPOINT ["/portainer"]

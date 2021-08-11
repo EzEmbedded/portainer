@@ -129,7 +129,7 @@ gruntfile_cfg.shell = {
 function shell_build_binary(p, a) {
   var binfile = 'dist/portainer';
   if (p === 'linux') {
-    return ['if [ -f ' + binfile + ' ]; then', 'echo "Portainer binary exists";', 'else', 'build/build_binary.sh ' + p + ' ' + a + ';', 'fi'].join(' ');
+    return ['if [ -f ' + binfile + ' ]; then', 'echo "Portainer binary exists";', 'else', './build/build_binary.sh ' + p + ' ' + a + ';', 'fi'].join(' ');
   } else {
     return [
       'powershell -Command "& {if (Get-Item -Path ' + binfile + '.exe -ErrorAction:SilentlyContinue) {',
@@ -160,7 +160,7 @@ function shell_download_docker_binary(p, a) {
   var ip = ps[p] === undefined ? p : ps[p];
   var ia = as[a] === undefined ? a : as[a];
   var binaryVersion = p === 'windows' ? '<%= shippedDockerVersionWindows %>' : '<%= shippedDockerVersion %>';
-  
+
   return [
     'if [ -f dist/docker ] || [ -f dist/docker.exe ]; then',
     'echo "docker binary exists";',
