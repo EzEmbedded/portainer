@@ -1,3 +1,4 @@
+#!/bin/sh
 binary="portainer"
 mkdir -p dist
 
