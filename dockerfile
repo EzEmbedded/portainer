@@ -57,7 +57,7 @@ RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng li
 # RUN node version && yarn -v
 
 RUN echo $PWD
-RUN build/build_binary.sh linux arm
+# RUN build/build_binary.sh linux arm
 RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
@@ -65,7 +65,7 @@ RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
 RUN echo $PWD
-RUN build/build_binary.sh linux arm
+RUN /portainer/build/build_binary.sh linux arm
 RUN yarn
 RUN  yarn build:server
 
