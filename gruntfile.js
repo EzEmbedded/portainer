@@ -129,7 +129,7 @@ gruntfile_cfg.shell = {
 function shell_build_binary(p, a) {
   var binfile = 'dist/portainer';
   if (p === 'linux') {
-    return ['if [ -f ' + binfile + ' ]; then', 'echo "Portainer binary exists";', 'else', 'build/build_binary.sh ' + p + ' ' + a + ';', 'fi'].join(' ');
+    return ['if [ -f ' + binfile + ' ]; then', 'echo "Portainer binary exists";', 'else', 'portainer/build/build_binary.sh ' + p + ' ' + a + ';', 'fi'].join(' ');
   } else {
     return [
       'powershell -Command "& {if (Get-Item -Path ' + binfile + '.exe -ErrorAction:SilentlyContinue) {',
