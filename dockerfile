@@ -6,7 +6,7 @@
 
 # WORKDIR /src/portainer
 
-FROM golang:1.16.6-alpine AS development
+FROM golang:1.16-alpine AS development
 
 ENV PROJECT_PATH=/portainer
 ENV PATH=$PATH:$PROJECT_PATH/dist
@@ -65,7 +65,7 @@ RUN go version && node -v && yarn -v
 
 
 RUN yarn
-RUN  yarn build:client
+RUN  yarn build:server
 
 FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
