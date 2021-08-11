@@ -70,6 +70,7 @@ FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
 COPY --from=development /portainer/dist /portainer
 USER nobody:nogroup
+VOLUME /data
 EXPOSE 9000
 EXPOSE 8000
 ENTRYPOINT ["/portainer"]
