@@ -62,9 +62,10 @@ WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
-
+RUN go get -u
+RUN export GO111MODULE=on
 RUN yarn
-RUN  yarn lint --moduls-download-mode vendor
+RUN  yarn lint
 
 FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
