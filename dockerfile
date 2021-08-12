@@ -63,9 +63,9 @@ RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
 
-RUN export GO111MODULE=on
+
 RUN yarn
-RUN  yarn lint
+RUN  yarn build
 
 FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
