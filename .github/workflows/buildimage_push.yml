@@ -9,6 +9,10 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+          version: v1.29
         # with:
         #   ref: 1.24
       # - 

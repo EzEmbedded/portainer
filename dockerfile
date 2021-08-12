@@ -18,7 +18,7 @@ ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 
 RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn curl
 RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng libpng-dev libwebp libwebp-dev libjpeg-turbo libjpeg-turbo-dev
-RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.41.1
+# RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.41.1
 
 
 
