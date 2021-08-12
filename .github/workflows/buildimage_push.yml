@@ -55,7 +55,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/arm/v7
+          platforms: linux/amd64
+          # platforms: linux/arm/v7
           # platforms: linux/arm64/v8    
           context: .
           push: true
