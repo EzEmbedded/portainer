@@ -62,7 +62,7 @@ WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
-RUN go get -u
+
 RUN export GO111MODULE=on
 RUN yarn
 RUN  yarn lint
