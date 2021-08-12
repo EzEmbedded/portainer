@@ -64,7 +64,7 @@ RUN go version && node -v && yarn -v
 
 
 RUN yarn
-RUN  yarn build
+RUN  yarn lint
 
 FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
