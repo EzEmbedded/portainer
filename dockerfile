@@ -69,7 +69,7 @@ RUN  yarn build
 
 FROM portainer/base AS production
 # FROM alpine:3.13.2 AS production
-RUN apk --no-cache add ca-certificates
+# RUN apk --no-cache add ca-certificates
 COPY --from=development /portainer/dist /portainer
 # USER nobody:nogroup
 VOLUME /data
