@@ -16,10 +16,9 @@ ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
 # Set TERM as noninteractive to suppress debconf errors
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn
+RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn curl
 RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng libpng-dev libwebp libwebp-dev libjpeg-turbo libjpeg-turbo-dev
-
-
+# RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.41.1
 
 
 
@@ -56,25 +55,26 @@ RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng li
 # Confirm installation
 # RUN node version && yarn -v
 
-RUN echo $PWD
-# RUN build/build_binary.sh linux arm
+
 RUN mkdir -p $PROJECT_PATH
 COPY . $PROJECT_PATH
 WORKDIR $PROJECT_PATH
 RUN go version && node -v && yarn -v
 # RUN yarn add cypress --dev
 
-RUN echo $PWD
-# RUN chmod +x build/build_binary.sh
-# RUN build/build_binary.sh linux arm
+
+
 RUN yarn
 RUN  yarn build
 
-FROM alpine:3.13.2 AS production
-RUN apk --no-cache add ca-certificates
+FROM alpine:latest AS production
+# FROM portainer/base AS production
+# FROM alpine:3.13.2 AS production
+# RUN apk --no-cache add ca-certificates
 COPY --from=development /portainer/dist /portainer
-USER nobody:nogroup
+# USER nobody:nogroup
 VOLUME /data
 EXPOSE 9000
 EXPOSE 8000
+# RUN chmod +x /portainer
 ENTRYPOINT ["/portainer"]
