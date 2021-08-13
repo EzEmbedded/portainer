@@ -75,5 +75,5 @@ COPY --from=development /portainer/dist /portainer
 VOLUME /data
 EXPOSE 9000
 EXPOSE 8000
-RUN chmod +x /portainer
+# RUN chmod +x /portainer
 ENTRYPOINT ["/portainer"]
