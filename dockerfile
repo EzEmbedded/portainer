@@ -67,11 +67,13 @@ RUN go version && node -v && yarn -v
 RUN yarn
 RUN  yarn build
 
-FROM alpine:3.13.2 AS production
+FROM portainer/base AS production
+# FROM alpine:3.13.2 AS production
 RUN apk --no-cache add ca-certificates
 COPY --from=development /portainer/dist /portainer
 # USER nobody:nogroup
 VOLUME /data
 EXPOSE 9000
 EXPOSE 8000
+RUN chmod +x /portainer
 ENTRYPOINT ["/portainer"]
