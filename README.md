@@ -73,7 +73,7 @@ Portainer is licensed under the zlib license. See [LICENSE](./LICENSE) for refer
 
 Portainer also contains code from open source projects. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for a list.
 
-20210820
+## 20210820
 
 docker run hello-world
 docker login
@@ -94,9 +94,10 @@ dd if=/dev/zero of=/dev/mmcblk2p2 bs=1024 seek=8 count=1
 
 nmcli connection modify 'Wired connection 1' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.14.14 ipv4.gateway 192.168.14.1 ipv4.dns 114.114.114.114
 
-portainer 开发环境搭建：
-1、在项目根目录下添加 dockerfile
-FROM golang:1.16.6-alpine AS development
+## portainer 开发环境搭建：
+
+    1、在项目根目录下添加 dockerfile
+        FROM golang:1.16.6-alpine AS development
 
         ENV PROJECT_PATH=/portainer
     	ENV PATH=$PATH:$PROJECT_PATH/dist
