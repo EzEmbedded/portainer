@@ -72,3 +72,115 @@ Portainer supports "Current - 2 docker versions only. Prior versions may operate
 Portainer is licensed under the zlib license. See [LICENSE](./LICENSE) for reference.
 
 Portainer also contains code from open source projects. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for a list.
+
+20210820
+
+docker run hello-world
+docker login
+docker tag hello-world:latest scanlidocker/loraserver-app:v0.21
+docker push scanlidocker/loraserver-app:v0.21
+
+docker tag scanlidocker/chirpstack-application-server chirpstack-application-server
+
+docker tag scanlidocker/chirpstack-network-server:v0.21 chirpstack-network-server
+
+docker tag scanlidocker/chirpstack-gateway-bridge:v0.21 chirpstack-gateway-bridge
+df -hl
+apt install docker.io -y
+docker run -d -p 1880:1880 --restart=always -v node_red_data:/data --name lora_nodered nodered/node-red
+docker run -d -p 9000:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --name lora_portainer scanlidocker/portainer:v0.1
+
+dd if=/dev/zero of=/dev/mmcblk2p2 bs=1024 seek=8 count=1
+
+nmcli connection modify 'Wired connection 1' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.14.14 ipv4.gateway 192.168.14.1 ipv4.dns 114.114.114.114
+
+portainer 开发环境搭建：
+1、在项目根目录下添加 dockerfile
+FROM golang:1.16.6-alpine AS development
+
+        ENV PROJECT_PATH=/portainer
+    	ENV PATH=$PATH:$PROJECT_PATH/dist
+    	ENV CGO_ENABLED=0
+    	ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
+
+    	RUN apk add --no-cache ca-certificates bash alpine-sdk nodejs npm yarn curl
+    	RUN apk add --no-cache automake nasm autoconf build-base zlib zlib-dev libpng libpng-dev libwebp libwebp-dev libjpeg-turbo libjpeg-turbo-dev
+
+    	RUN mkdir -p $PROJECT_PATH
+    	COPY . $PROJECT_PATH
+    	WORKDIR $PROJECT_PATH
+    	RUN go version && node -v && yarn -v
+    	# RUN yarn add cypress --dev
+
+    	RUN yarn
+    	RUN  yarn build
+
+    	FROM alpine:latest AS production
+    	# FROM portainer/base AS production
+    	# FROM alpine:3.13.2 AS production
+    	# RUN apk --no-cache add ca-certificates
+    	COPY --from=development /portainer/dist /
+    	# USER nobody:nogroup
+    	VOLUME /data
+    	WORKDIR /
+    	EXPOSE 9000
+    	EXPOSE 8000
+    	ENTRYPOINT ["/portainer"]
+
+    2、在.github/workflows下，添加buildimage_push.yml:
+    	name: CI
+    	on:
+    	  workflow_dispatch:
+
+    	jobs:
+    	  buildimage:
+    		runs-on: ubuntu-latest
+    		steps:
+    		  -
+    			name: Checkout
+    			uses: actions/checkout@v2
+    			# with:
+    			#   ref: 1.24
+    		  -
+    			name: Docker meta
+    			id: meta
+    			uses: docker/metadata-action@v3
+    			with:
+    			  images: |
+    				scanlidocker/portainer
+    			  tags: |
+    				type=semver,pattern={{version}}
+    				type=semver,pattern={{major}}
+    				type=semver,pattern={{major}}.{{minor}}
+    		  -
+    			name: Set up QEMU
+    			uses: docker/setup-qemu-action@v1
+    		  -
+    			name: Set up Docker Buildx
+    			uses: docker/setup-buildx-action@v1
+    		  -
+    			name: Login to DockerHub
+    			uses: docker/login-action@v1
+    			with:
+    			  username: ${{ secrets.DOCKER_HUB_USER_NAME }}
+    			  password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    		  -
+    			name: Build and push
+    			id: docker_build
+    			uses: docker/build-push-action@v2
+    			with:
+    			  # platforms: linux/amd64
+    			  platforms: linux/arm/v7
+    			  # platforms: linux/arm64/v8
+    			  context: .
+    			  push: true
+    			  tags: scanlidocker/portainer:v0.1
+    			  labels: ${{ steps.meta.outputs.labels }}
+    		  -
+    			name: Image digest
+    			run: echo ${{ steps.docker_build.outputs.digest }}
+    3、在portainer\build\build_binary.sh里添加：
+    			#!/bin/sh
+    4、在portainer\package.json里去掉cypress相关的软件包依赖。
+    5、core.js下载有时不成功，重新运行即可。
+    6、架构支持：linux/arm/v7 linux/arm64/v8 linux/amd64
