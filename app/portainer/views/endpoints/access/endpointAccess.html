@@ -1,5 +1,5 @@
 <rd-header>
-  <rd-header-title title-text="Endpoint access"></rd-header-title>
+  <rd-header-title title-text="节点访问"></rd-header-title>
   <rd-header-content>
     <a ui-sref="portainer.endpoints">Endpoints</a> &gt; <a ui-sref="portainer.endpoints.endpoint({id: ctrl.endpoint.Id})">{{ ctrl.endpoint.Name }}</a> &gt; Access management
   </rd-header-content>
@@ -13,19 +13,19 @@
         <table class="table">
           <tbody>
             <tr>
-              <td>Name</td>
+              <td>节点名称</td>
               <td>
                 {{ ctrl.endpoint.Name }}
               </td>
             </tr>
             <tr>
-              <td>URL</td>
+              <td>节点URL</td>
               <td>
                 {{ ctrl.endpoint.URL | stripprotocol }}
               </td>
             </tr>
             <tr>
-              <td>Group</td>
+              <td>节点组</td>
               <td>
                 <a ui-sref="portainer.groups.group({ id: ctrl.group.Id })">{{ ctrl.group.Name }}</a>
               </td>

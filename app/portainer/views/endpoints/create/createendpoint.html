@@ -1,6 +1,6 @@
 <rd-header>
-  <rd-header-title title-text="Create endpoint"></rd-header-title>
-  <rd-header-content> <a ui-sref="portainer.endpoints">Endpoints</a> &gt; Add endpoint </rd-header-content>
+  <rd-header-title title-text="创建节点"></rd-header-title>
+  <rd-header-content> <a ui-sref="portainer.endpoints">节点</a> &gt; 添加节点 </rd-header-content>
 </rd-header>
 
 <div class="row">
@@ -9,7 +9,7 @@
       <rd-widget-body>
         <form class="form-horizontal" name="endpointCreationForm">
           <div class="col-sm-12 form-section-title">
-            Environment type
+            环境类型
           </div>
           <div class="form-group"></div>
           <div class="form-group" style="margin-bottom: 0;">
@@ -19,9 +19,9 @@
                 <label for="agent_endpoint">
                   <div class="boxselector_header">
                     <i class="fa fa-bolt" aria-hidden="true" style="margin-right: 2px;"></i>
-                    Agent
+                    代理（Agent）
                   </div>
-                  <p>Portainer agent</p>
+                  <p>Portainer代理（agent）</p>
                 </label>
               </div>
               <div ng-click="setDefaultPortainerInstanceURL()">
@@ -29,9 +29,9 @@
                 <label for="edge_agent_endpoint">
                   <div class="boxselector_header">
                     <i class="fa fa-cloud" aria-hidden="true" style="margin-right: 2px;"></i>
-                    Edge Agent
+                    边缘代理（Agent）
                   </div>
-                  <p>Portainer Edge agent</p>
+                  <p>Portainer边缘代理（agent）</p>
                 </label>
               </div>
               <div ng-click="resetEndpointURL()">
@@ -41,7 +41,7 @@
                     <i class="fab fa-docker" aria-hidden="true" style="margin-right: 2px;"></i>
                     Docker
                   </div>
-                  <p>Directly connect to the Docker API</p>
+                  <p>直通 Docker API</p>
                 </label>
               </div>
               <div ng-click="resetEndpointURL()">
@@ -51,7 +51,7 @@
                     <i class="fas fa-dharmachakra" aria-hidden="true" style="margin-right: 2px;"></i>
                     Kubernetes
                   </div>
-                  <p>Local Kubernetes environment</p>
+                  <p>本地 Kubernetes环境</p>
                 </label>
               </div>
               <div>
@@ -61,37 +61,37 @@
                     <i class="fab fa-microsoft" aria-hidden="true" style="margin-right: 2px;"></i>
                     Azure
                   </div>
-                  <p>Connect to Microsoft Azure ACI</p>
+                  <p>链接到Microsoft Azure ACI</p>
                 </label>
               </div>
             </div>
           </div>
           <div ng-if="state.EnvironmentType === 'docker'">
             <div class="col-sm-12 form-section-title">
-              Important notice
+              重要告示
             </div>
             <div class="form-group">
               <p class="col-sm-12 text-muted small">
-                You can connect Portainer to a Docker environment via socket or via TCP. You can find more information about how to expose the Docker API over TCP
-                <a href="https://docs.docker.com/engine/security/https/"> in the Docker documentation</a>.
+                Portainer通过socket或TCP与Docker环境链接，如何通过TCP将Docker API显露出来，可参考
+                <a href="https://docs.docker.com/engine/security/https/"> Docker文档</a>.
               </p>
 
               <p class="col-sm-12 text-muted small">
-                When using the socket, ensure that you have started the Portainer container with the following Docker flag
+                至于使用socket链接，Portainer容器的启动必须用Docker的如下flag
                 <code> -v "/var/run/docker.sock:/var/run/docker.sock" </code>
-                (on Linux) or
+                (Linux环境) 或
                 <code> -v \.\pipe\docker_engine:\.\pipe\docker_engine </code>
-                (on Windows).
+                (Windows环境).
               </p>
             </div>
           </div>
           <div ng-if="state.EnvironmentType === 'agent'">
             <div class="col-sm-12 form-section-title">
-              Information
+              信息
             </div>
             <div class="form-group">
               <span class="col-sm-12 text-muted small">
-                Ensure that you have deployed the Portainer agent in your cluster first. Refer to the platform related command below to deploy it.
+                首先确保Portainer代理已经部署到集群里，根据操作系统的不同，部署Portainer代理的命令也如下不一样。
                 <div class="input-group input-group-sm" style="margin-top: 10px; margin-bottom: 10px;">
                   <div class="btn-group btn-group-sm">
                     <label class="btn btn-primary" ng-model="state.PlatformType" uib-btn-radio="'linux'"><i class="fab fa-linux" style="margin-right: 2px;"></i> Linux</label>
@@ -114,7 +114,7 @@
                     </uib-tab>
                   </uib-tabset>
                   <div style="margin-top: 10px;">
-                    <span class="btn btn-primary btn-sm space-left" ng-click="copyAgentCommand()"><i class="fa fa-copy space-right" aria-hidden="true"></i>Copy command</span>
+                    <span class="btn btn-primary btn-sm space-left" ng-click="copyAgentCommand()"><i class="fa fa-copy space-right" aria-hidden="true"></i>拷贝命令</span>
                     <span>
                       <i id="copyNotification" class="fa fa-check green-icon" aria-hidden="true" style="margin-left: 7px; display: none;"></i>
                     </span>
@@ -125,7 +125,7 @@
           </div>
           <div ng-if="state.EnvironmentType === 'edge_agent'">
             <div class="col-sm-12 form-section-title">
-              Information
+              信息
             </div>
             <div class="form-group">
               <span class="col-sm-12 text-muted small">

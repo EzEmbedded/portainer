@@ -1,6 +1,6 @@
 <rd-header>
-  <rd-header-title title-text="Create Custom template"></rd-header-title>
-  <rd-header-content> <a ui-sref="docker.templates.custom">Custom Templates</a> &gt; Create Custom template </rd-header-content>
+  <rd-header-title title-text="创建定制模板"></rd-header-title>
+  <rd-header-content> <a ui-sref="docker.templates.custom">定制模板</a> &gt; 创建定制模板 </rd-header-content>
 </rd-header>
 
 <div class="row" ng-if="!$ctrl.state.loading">
@@ -13,7 +13,7 @@
           <!-- build-method -->
           <div ng-if="!$ctrl.state.fromStack">
             <div class="col-sm-12 form-section-title">
-              Build method
+              构建方法
             </div>
             <div class="form-group"></div>
             <div class="form-group" style="margin-bottom: 0;">
@@ -23,9 +23,9 @@
                   <label for="method_editor">
                     <div class="boxselector_header">
                       <i class="fa fa-edit" aria-hidden="true" style="margin-right: 2px;"></i>
-                      Web editor
+                      Web编辑器
                     </div>
-                    <p>Use our Web editor</p>
+                    <p>使用我们的Web编辑器</p>
                   </label>
                 </div>
                 <div>
@@ -33,9 +33,9 @@
                   <label for="method_upload">
                     <div class="boxselector_header">
                       <i class="fa fa-upload" aria-hidden="true" style="margin-right: 2px;"></i>
-                      Upload
+                      上传
                     </div>
-                    <p>Upload from your computer</p>
+                    <p>从本地计算机中上传</p>
                   </label>
                 </div>
                 <div>
@@ -43,9 +43,9 @@
                   <label for="method_repository">
                     <div class="boxselector_header">
                       <i class="fab fa-git" aria-hidden="true" style="margin-right: 2px;"></i>
-                      Repository
+                      仓库（repository）
                     </div>
-                    <p>Use a git repository</p>
+                    <p>使用git仓库（repository）</p>
                   </label>
                 </div>
               </div>
@@ -55,13 +55,13 @@
           <!-- web-editor -->
           <div ng-show="$ctrl.state.Method === 'editor'">
             <div class="col-sm-12 form-section-title">
-              Web editor
+              Web 编辑器
             </div>
             <div class="form-group">
               <span class="col-sm-12 text-muted small">
-                You can get more information about Compose file format in the
+                你可以从
                 <a href="https://docs.docker.com/compose/compose-file/" target="_blank">
-                  official documentation
+                  官方文档获取更多的compose文件格式信息
                 </a>
                 .
               </span>
@@ -70,7 +70,7 @@
               <div class="col-sm-12">
                 <code-editor
                   identifier="custom-template-creation-editor"
-                  placeholder="# Define or paste the content of your docker-compose file here"
+                  placeholder="# 在此处添加docker-compose文件内容"
                   yml="true"
                   value="$ctrl.formValues.FileContent"
                   on-change="($ctrl.editorUpdate)"
@@ -82,17 +82,17 @@
           <!-- upload -->
           <div ng-show="$ctrl.state.Method === 'upload'">
             <div class="col-sm-12 form-section-title">
-              Upload
+              上传
             </div>
             <div class="form-group">
               <span class="col-sm-12 text-muted small">
-                You can upload a Compose file from your computer.
+                你可以从本地计算机中上传docker-compose文件.
               </span>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <button type="button" class="btn btn-sm btn-primary" ngf-select ng-model="$ctrl.formValues.File">
-                  Select file
+                  选择docker-compose文件
                 </button>
                 <span style="margin-left: 5px;">
                   {{ $ctrl.formValues.File.name }}
@@ -109,7 +109,7 @@
 
           <!-- actions -->
           <div class="col-sm-12 form-section-title">
-            Actions
+            开始上传
           </div>
           <div class="form-group">
             <div class="col-sm-12">
@@ -124,8 +124,8 @@
                 ng-click="$ctrl.createCustomTemplate()"
                 button-spinner="$ctrl.state.actionInProgress"
               >
-                <span ng-hide="$ctrl.state.actionInProgress">Create custom template</span>
-                <span ng-show="$ctrl.state.actionInProgress">Creation in progress...</span>
+                <span ng-hide="$ctrl.state.actionInProgress">创建定制模板</span>
+                <span ng-show="$ctrl.state.actionInProgress">创建中...</span>
               </button>
               <span class="text-danger" ng-if="$ctrl.state.formValidationError" style="margin-left: 5px;">
                 {{ $ctrl.state.formValidationError }}
