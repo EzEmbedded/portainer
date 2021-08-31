@@ -68,7 +68,7 @@
           </div>
           <div ng-if="state.EnvironmentType === 'docker'">
             <div class="col-sm-12 form-section-title">
-              重要告示
+              重要提示
             </div>
             <div class="form-group">
               <p class="col-sm-12 text-muted small">
@@ -100,11 +100,11 @@
                 </div>
                 <div style="margin-top: 10px;">
                   <uib-tabset active="state.deploymentTab">
-                    <uib-tab index="0" ng-if="state.PlatformType === 'linux'" heading="Kubernetes via load balancer">
+                    <uib-tab index="0" ng-if="state.PlatformType === 'linux'" heading="通过负载均衡的Kubernetes">
                       <code style="display: block; white-space: pre-wrap; padding: 16px 90px;">{{ deployCommands.kubeLoadBalancer }}</code>
                     </uib-tab>
 
-                    <uib-tab index="1" ng-if="state.PlatformType === 'linux'" heading="Kubernetes via node port">
+                    <uib-tab index="1" ng-if="state.PlatformType === 'linux'" heading="通过节点端口的Kubernetes">
                       <code style="display: block; white-space: pre-wrap; padding: 16px 90px;">{{ deployCommands.kubeNodePort }}</code>
                     </uib-tab>
 
@@ -130,57 +130,54 @@
             <div class="form-group">
               <span class="col-sm-12 text-muted small">
                 <p>
-                  Allows you to create an endpoint that can be registered with an Edge agent. The Edge agent will initiate the communications with the Portainer instance. All the
-                  required information on how to connect an Edge agent to this endpoint will be available after endpoint creation.
+                  可以用边缘代理注册来创建节点，边缘代理会初始化portainer实例之间的通讯。当节点创建后，如何创建与边缘代理连接的必要信息将可见。
                 </p>
-                <p> You can read more about the Edge agent in the userguide available <a href="https://downloads.portainer.io/edge_agent_guide.pdf">here.</a> </p>
+                <p> 边缘代理的使用手册见链接<a href="https://downloads.portainer.io/edge_agent_guide.pdf">。</a> </p>
               </span>
             </div>
           </div>
           <div ng-if="state.EnvironmentType === 'kubernetes'">
             <div class="col-sm-12 form-section-title">
-              Important notice
+              重要提示
             </div>
             <div class="form-group">
               <p class="col-sm-12 text-muted small">
-                This will allow you to manage the Kubernetes environment where Portainer is running.
+                当Portainer运行时，即可管理Kubernetes环境。
               </p>
 
               <p class="col-sm-12 text-muted small">
                 <i class="fa fa-info-circle blue-icon" aria-hidden="true" style="margin-right: 2px;"></i>
-                In order to manage a remote Kubernetes environment, please use the Agent or Edge agent options.
+                管理远程Kubernetes环境，可以使用代理或边缘代理选项。
               </p>
             </div>
           </div>
           <div ng-if="state.EnvironmentType === 'azure'">
             <div class="col-sm-12 form-section-title">
-              Information
+              信息
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <span class="small">
-                  <p class="text-muted"> <i class="fa fa-flask orange-icon" aria-hidden="true" style="margin-right: 2px;"></i> This feature is experimental. </p>
+                  <p class="text-muted"> <i class="fa fa-flask orange-icon" aria-hidden="true" style="margin-right: 2px;"></i> 实验功能。</p>
                   <p class="text-primary">
-                    Connect to Microsoft Azure to manage Azure Container Instances (ACI).
+                    连接到微软Azure来管理微软Azure容器实例（ACI）。
                   </p>
                   <p class="text-muted">
                     <i class="fa fa-info-circle blue-icon" aria-hidden="true" style="margin-right: 2px;"></i>
-                    Have a look at
-                    <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal" target="_blank"
-                      >the Azure documentation</a
-                    >
-                    to retrieve the credentials required below.
+                    请看
+                    <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal" target="_blank">Azure文档</a>
+                    来找回下面需要的证书。
                   </p>
                 </span>
               </div>
             </div>
           </div>
           <div class="col-sm-12 form-section-title">
-            Environment details
+            环境详情
           </div>
           <!-- name-input -->
           <div class="form-group">
-            <label for="container_name" class="col-sm-3 col-lg-2 control-label text-left">Name</label>
+            <label for="container_name" class="col-sm-3 col-lg-2 control-label text-left">名称</label>
             <div class="col-sm-9 col-lg-10">
               <input
                 type="text"
@@ -196,7 +193,7 @@
           <div class="form-group" ng-show="endpointCreationForm.container_name.$invalid">
             <div class="col-sm-12 small text-warning">
               <div ng-messages="endpointCreationForm.container_name.$error">
-                <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+                <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此字段为必要字段。</p>
               </div>
             </div>
           </div>
@@ -205,7 +202,7 @@
           <div ng-if="state.EnvironmentType === 'docker'">
             <div class="form-group" style="padding-left: 15px;">
               <label for="connect_socket" class="col-sm_12 control-label text-left">
-                Connect via socket
+                通过socket连接
               </label>
               <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.ConnectSocket" /><i></i> </label>
             </div>
@@ -214,7 +211,7 @@
           <div ng-if="state.EnvironmentType === 'docker' && formValues.ConnectSocket">
             <div class="form-group" style="padding-left: 15px;">
               <label for="override_socket" class="col-sm_12 control-label text-left">
-                Override default socket path
+                重载缺省的socket路径
               </label>
               <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.OverrideSocket" /><i></i> </label>
             </div>
@@ -222,9 +219,8 @@
             <div ng-if="formValues.OverrideSocket">
               <div class="form-group">
                 <label for="socket_path" class="col-sm-3 col-lg-2 control-label text-left">
-                  Socket path
-                  <portainer-tooltip position="bottom" message="Path to the Docker socket. Remember to bind-mount the socket, see the important notice above for more information.">
-                  </portainer-tooltip>
+                  Socket路径
+                  <portainer-tooltip position="bottom" message=" Docker socket路径。记得要绑定挂载（bind-mount）socket, 请参考上面更多重要信息。"> </portainer-tooltip>
                 </label>
                 <div class="col-sm-9 col-lg-10">
                   <input
@@ -232,7 +228,7 @@
                     class="form-control"
                     name="socket_path"
                     ng-model="formValues.SocketPath"
-                    placeholder="e.g. /var/run/docker.sock (on Linux) or //./pipe/docker_engine (on Windows)"
+                    placeholder="例如： /var/run/docker.sock (Linux下) 或 //./pipe/docker_engine (Windows下)"
                     required
                   />
                 </div>
@@ -240,7 +236,8 @@
               <div class="form-group" ng-show="endpointCreationForm.socket_path.$invalid">
                 <div class="col-sm-12 small text-warning">
                   <div ng-messages="endpointCreationForm.socket_path.$error">
-                    <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This field is required.</p>
+                    <p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> </p
+                    ><p ng-message="required"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 此字段为必要字段。</p>
                   </div>
                 </div>
               </div>
@@ -251,7 +248,7 @@
           <div ng-if="(state.EnvironmentType === 'docker' && !formValues.ConnectSocket) || state.EnvironmentType === 'agent'">
             <div class="form-group">
               <label for="endpoint_url" class="col-sm-3 col-lg-2 control-label text-left">
-                Endpoint URL
+                节点 URL
                 <portainer-tooltip
                   position="bottom"
                   message="URL or IP address of a Docker host. The Docker API must be exposed over a TCP port. Please refer to the Docker documentation to configure it."
