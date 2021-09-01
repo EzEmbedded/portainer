@@ -1,21 +1,21 @@
 <rd-header>
-  <rd-header-title title-text="Authentication settings"></rd-header-title>
-  <rd-header-content> <a ui-sref="portainer.settings">Settings</a> &gt; Authentication </rd-header-content>
+  <rd-header-title title-text="认证设置"></rd-header-title>
+  <rd-header-content> <a ui-sref="portainer.settings">设置</a> &gt; 认证 </rd-header-content>
 </rd-header>
 
 <div class="row">
   <div class="col-sm-12">
     <rd-widget>
-      <rd-widget-header icon="fa-users" title-text="Authentication"></rd-widget-header>
+      <rd-widget-header icon="fa-users" title-text="认证"></rd-widget-header>
       <rd-widget-body>
         <form class="form-horizontal">
           <div class="col-sm-12 form-section-title">
-            Configuration
+            配置
           </div>
           <div class="form-group">
             <label for="user_timeout" class="col-sm-2 control-label text-left">
-              Session lifetime
-              <portainer-tooltip message="Time before users are forced to relogin."></portainer-tooltip>
+              会话时间
+              <portainer-tooltip message="如超时，用户将强制重登录"></portainer-tooltip>
             </label>
             <div class="col-sm-10">
               <select
@@ -28,11 +28,11 @@
           </div>
           <div class="form-group">
             <span class="col-sm-12 text-muted small">
-              Changing from default is only recommended if you have additional layers of authentication in front of Portainer.
+              如果在Portainer之前有另外的身份认证，唯一的建议是修改Portainer的缺省身份认证。
             </span>
           </div>
           <div class="col-sm-12 form-section-title">
-            Authentication method
+            认证方法
           </div>
           <div class="form-group"></div>
           <div class="form-group" style="margin-bottom: 0;">
@@ -42,9 +42,9 @@
                 <label for="registry_quay">
                   <div class="boxselector_header">
                     <i class="fa fa-users" aria-hidden="true" style="margin-right: 2px;"></i>
-                    Internal
+                    本地
                   </div>
-                  <p>Internal authentication mechanism</p>
+                  <p>本地认证机制</p>
                 </label>
               </div>
               <div>
@@ -54,7 +54,7 @@
                     <i class="fa fa-users" aria-hidden="true" style="margin-right: 2px;"></i>
                     LDAP
                   </div>
-                  <p>LDAP authentication</p>
+                  <p>LDAP 认证</p>
                 </label>
               </div>
               <div>
@@ -64,7 +64,7 @@
                     <i class="fa fa-users" aria-hidden="true" style="margin-right: 2px;"></i>
                     OAuth
                   </div>
-                  <p>OAuth authentication</p>
+                  <p>OAuth 认证</p>
                 </label>
               </div>
             </div>
@@ -72,34 +72,34 @@
 
           <div ng-if="settings.AuthenticationMethod === 1">
             <div class="col-sm-12 form-section-title">
-              Information
+              信息
             </div>
             <div class="form-group col-sm-12 text-muted small">
-              When using internal authentication, Portainer will encrypt user passwords and store credentials locally.
+              当采用本地认证时，Portainer将加密用户密码并在本地存放。
             </div>
           </div>
 
           <div ng-if="settings.AuthenticationMethod === 2">
             <div>
               <div class="col-sm-12 form-section-title">
-                Information
+                信息
               </div>
               <div class="form-group col-sm-12 text-muted small">
-                When using LDAP authentication, Portainer will delegate user authentication to a LDAP server and fallback to internal authentication if LDAP authentication fails.
+                当采用LDAP认证时，Portainer将代理用户到LDAP服务器认证，如果LDAP认证失败将返回到本地认证，
               </div>
             </div>
 
             <div class="col-sm-12 form-section-title">
-              LDAP configuration
+              LDAP 配置
             </div>
 
             <div class="form-group">
               <label for="ldap_url" class="col-sm-3 col-lg-2 control-label text-left">
-                LDAP Server
-                <portainer-tooltip position="bottom" message="URL or IP address of the LDAP server."></portainer-tooltip>
+                LDAP 服务器
+                <portainer-tooltip position="bottom" message="LDAP 服务器的URL和IP地址。"></portainer-tooltip>
               </label>
               <div class="col-sm-9 col-lg-10">
-                <input type="text" class="form-control" id="ldap_url" ng-model="formValues.LDAPSettings.URL" placeholder="e.g. 10.0.0.10:389 or myldap.domain.tld:389" />
+                <input type="text" class="form-control" id="ldap_url" ng-model="formValues.LDAPSettings.URL" placeholder="例如： 10.0.0.10:389 or myldap.domain.tld:389" />
               </div>
             </div>
 
@@ -107,8 +107,8 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <label for="anonymous_mode" class="control-label text-left">
-                  Anonymous mode
-                  <portainer-tooltip position="bottom" message="Enable this option if the server is configured for Anonymous access."></portainer-tooltip>
+                  匿名模式
+                  <portainer-tooltip position="bottom" message="如果服务器被配置成匿名访问，则使能此选项。"></portainer-tooltip>
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" id="anonymous_mode" ng-model="formValues.LDAPSettings.AnonymousMode" /><i></i> </label>
               </div>
@@ -119,7 +119,7 @@
               <div class="form-group">
                 <label for="ldap_username" class="col-sm-3 col-lg-2 control-label text-left">
                   Reader DN
-                  <portainer-tooltip position="bottom" message="Account that will be used to search for users."></portainer-tooltip>
+                  <portainer-tooltip position="bottom" message="用于搜索用户的账户。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-9 col-lg-10">
                   <input
@@ -134,8 +134,8 @@
 
               <div class="form-group">
                 <label for="ldap_password" class="col-sm-3 col-lg-2 control-label text-left">
-                  Password
-                  <portainer-tooltip position="bottom" message="If you do not enter a password, Portainer will leave the current password unchanged."></portainer-tooltip>
+                  密码
+                  <portainer-tooltip position="bottom" message="如果不输入密码，Portainer会从当前用户退出。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-9 col-lg-10">
                   <input type="password" class="form-control" id="ldap_password" ng-model="formValues.LDAPSettings.Password" placeholder="password" />
@@ -145,7 +145,7 @@
 
             <div class="form-group" ng-if="!formValues.LDAPSettings.TLSConfig.TLS && !formValues.LDAPSettings.StartTLS">
               <label for="ldap_password" class="col-sm-3 col-lg-2 control-label text-left">
-                Connectivity check
+                连接状态检查
                 <i class="fa fa-check green-icon" style="margin-left: 5px;" ng-if="state.successfulConnectivityCheck"></i>
                 <i class="fa fa-times red-icon" style="margin-left: 5px;" ng-if="state.failedConnectivityCheck"></i>
               </label>
@@ -157,25 +157,22 @@
                   ng-click="LDAPConnectivityCheck()"
                   button-spinner="state.connectivityCheckInProgress"
                 >
-                  <span ng-hide="state.connectivityCheckInProgress">Test connectivity</span>
-                  <span ng-show="state.connectivityCheckInProgress">Testing connectivity...</span>
+                  <span ng-hide="state.connectivityCheckInProgress">测试连接状态</span>
+                  <span ng-show="state.connectivityCheckInProgress">正在测试连接状态...</span>
                 </button>
               </div>
             </div>
 
             <div class="col-sm-12 form-section-title">
-              LDAP security
+              LDAP 安全
             </div>
 
             <!-- starttls -->
             <div class="form-group" ng-if="!formValues.LDAPSettings.TLSConfig.TLS">
               <div class="col-sm-12">
                 <label for="tls" class="control-label text-left">
-                  Use StartTLS
-                  <portainer-tooltip
-                    position="bottom"
-                    message="Enable this option if want to use StartTLS to secure the connection to the server. Ignored if Use TLS is selected."
-                  ></portainer-tooltip>
+                  使用 StartTLS
+                  <portainer-tooltip position="bottom" message="如果使用StartTLS安全机制连接服务器，使能此选项，如果选择了TLS，则此选项失效。"></portainer-tooltip>
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.LDAPSettings.StartTLS" /><i></i> </label>
               </div>
@@ -186,8 +183,8 @@
             <div class="form-group" ng-if="!formValues.LDAPSettings.StartTLS">
               <div class="col-sm-12">
                 <label for="tls" class="control-label text-left">
-                  Use TLS
-                  <portainer-tooltip position="bottom" message="Enable this option if you need to specify TLS certificates to connect to the LDAP server."></portainer-tooltip>
+                  使用 TLS
+                  <portainer-tooltip position="bottom" message="如果使用TLS证书连接到LDAP服务器，选择此选项。"></portainer-tooltip>
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.LDAPSettings.TLSConfig.TLS" /><i></i> </label>
               </div>
@@ -198,8 +195,8 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <label for="tls" class="control-label text-left">
-                  Skip verification of server certificate
-                  <portainer-tooltip position="bottom" message="Skip the verification of the server TLS certificate. Not recommended on unsecured networks."></portainer-tooltip>
+                  忽略数字证书认证
+                  <portainer-tooltip position="bottom" message="忽略对服务器数字正式认证，在非安全网络中不建议使用。"></portainer-tooltip>
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.LDAPSettings.TLSConfig.TLSSkipVerify" /><i></i> </label>
               </div>
@@ -210,9 +207,9 @@
             <div ng-if="formValues.LDAPSettings.TLSConfig.TLS || formValues.LDAPSettings.StartTLS">
               <!-- ca-input -->
               <div class="form-group" ng-if="!formValues.LDAPSettings.TLSConfig.TLSSkipVerify">
-                <label class="col-sm-2 control-label text-left">TLS CA certificate</label>
+                <label class="col-sm-2 control-label text-left">TLS CA 数字证书</label>
                 <div class="col-sm-10">
-                  <button type="button" class="btn btn-sm btn-primary" ngf-select ng-model="formValues.TLSCACert">Select file</button>
+                  <button type="button" class="btn btn-sm btn-primary" ngf-select ng-model="formValues.TLSCACert">选择文件</button>
                   <span style="margin-left: 5px;">
                     {{ formValues.TLSCACert.name }}
                     <i class="fa fa-check green-icon" ng-if="formValues.TLSCACert && formValues.TLSCACert === formValues.LDAPSettings.TLSConfig.TLSCACert" aria-hidden="true"></i>
@@ -227,7 +224,7 @@
 
             <div class="form-group" ng-if="formValues.LDAPSettings.TLSConfig.TLS || formValues.LDAPSettings.StartTLS">
               <label for="ldap_password" class="col-sm-3 col-lg-2 control-label text-left">
-                Connectivity check
+                连通性检测
                 <i class="fa fa-check green-icon" style="margin-left: 5px;" ng-if="state.successfulConnectivityCheck"></i>
                 <i class="fa fa-times red-icon" style="margin-left: 5px;" ng-if="state.failedConnectivityCheck"></i>
               </label>
@@ -237,54 +234,53 @@
                   class="btn btn-primary btn-sm"
                   ng-click="LDAPConnectivityCheck()"
                   ng-disabled="(!formValues.LDAPSettings.URL) || (!formValues.TLSCACert && !formValues.LDAPSettings.TLSConfig.TLSSkipVerify) || ((!formValues.LDAPSettings.ReaderDN || !formValues.LDAPSettings.Password) && !formValues.LDAPSettings.AnonymousMode)"
-                  >Test connectivity</button
+                  >检测连通性</button
                 >
                 <i id="connectivityCheckSpinner" class="fa fa-cog fa-spin" style="margin-left: 5px; display: none;"></i>
               </div>
             </div>
 
             <div class="col-sm-12 form-section-title">
-              Automatic user provisioning
+              自动生成用户
             </div>
             <div class="form-group">
               <span class="col-sm-12 text-muted small">
-                With automatic user provisioning enabled, Portainer will create user(s) automatically with standard user role and assign them to team(s) which matches to LDAP group
-                name(s). If disabled, users must be created in Portainer beforehand.
+                自动生成用户可以自动创建标准角色用户，并分配团体名称来适配LDAP组名称，否则，必须先在Portainer里创建用户。
               </span>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <label for="tls" class="control-label text-left">
-                  Automatic user provisioning
+                  自动生成用户
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="formValues.LDAPSettings.AutoCreateUsers" /><i></i> </label>
               </div>
             </div>
 
             <div class="col-sm-12 form-section-title">
-              User search configurations
+              用户搜索配置
             </div>
 
             <!-- search-settings -->
             <div ng-repeat="config in formValues.LDAPSettings.SearchSettings | limitTo: (1 - formValues.LDAPSettings.SearchSettings)" style="margin-top: 5px;">
               <div class="form-group" ng-if="$index > 0">
                 <span class="col-sm-12 text-muted small">
-                  Extra search configuration
+                  扩展搜索配置
                 </span>
               </div>
 
               <div class="form-group">
                 <label for="ldap_basedn_{{ $index }}" class="col-sm-4 col-md-2 control-label text-left">
                   Base DN
-                  <portainer-tooltip position="bottom" message="The distinguished name of the element from which the LDAP server will search for users."></portainer-tooltip>
+                  <portainer-tooltip position="bottom" message="DN（完全限定名）是LDAP服务器用于用户搜索。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-8 col-md-4">
                   <input type="text" class="form-control" id="ldap_basedn_{{ $index }}" ng-model="config.BaseDN" placeholder="dc=ldap,dc=domain,dc=tld" />
                 </div>
 
                 <label for="ldap_username_att_{{ $index }}" class="col-sm-4 col-md-3 col-lg-2 margin-sm-top control-label text-left">
-                  Username attribute
-                  <portainer-tooltip position="bottom" message="LDAP attribute which denotes the username."></portainer-tooltip>
+                  用户名属性
+                  <portainer-tooltip position="bottom" message="用于表达用户名的LDAP属性。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-8 col-md-3 col-lg-4 margin-sm-top">
                   <input type="text" class="form-control" id="ldap_username_att_{{ $index }}" ng-model="config.UserNameAttribute" placeholder="uid" />
@@ -292,8 +288,8 @@
               </div>
               <div class="form-group">
                 <label for="ldap_filter_{{ $index }}" class="col-sm-4 col-md-2 control-label text-left">
-                  Filter
-                  <portainer-tooltip position="bottom" message="The LDAP search filter used to select user elements, optional."></portainer-tooltip>
+                  过滤
+                  <portainer-tooltip position="bottom" message="用于选择用户元素、选项的LDAP搜索过滤器。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-7 col-md-9">
                   <input type="text" class="form-control" id="ldap_filter_{{ $index }}" ng-model="config.Filter" placeholder="(objectClass=account)" />
@@ -307,36 +303,36 @@
 
               <div class="form-group">
                 <span class="label label-default interactive" style="margin-left: 10px;" ng-click="addSearchConfiguration()">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> add user search configuration
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加用户搜索配置
                 </span>
               </div>
             </div>
             <!-- !search-settings -->
 
             <div class="col-sm-12 form-section-title">
-              Group search configurations
+              组搜索配置
             </div>
 
             <!-- group-search-settings -->
             <div ng-repeat="groupConfig in formValues.LDAPSettings.GroupSearchSettings | limitTo: (1 - formValues.LDAPSettings.GroupSearchSettings)" style="margin-top: 5px;">
               <div class="form-group" ng-if="$index > 0">
                 <span class="col-sm-12 text-muted small">
-                  Extra search configuration
+                  扩展搜索配置
                 </span>
               </div>
 
               <div class="form-group">
                 <label for="ldap_group_basedn_{{ $index }}" class="col-sm-4 col-md-2 control-label text-left">
                   Group Base DN
-                  <portainer-tooltip position="bottom" message="The distinguished name of the element from which the LDAP server will search for groups."></portainer-tooltip>
+                  <portainer-tooltip position="bottom" message=" Group Base DN（完全限定名）是LDAP服务器用于用户组搜索。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-8 col-md-4">
                   <input type="text" class="form-control" id="ldap_group_basedn_{{ $index }}" ng-model="groupConfig.GroupBaseDN" placeholder="dc=ldap,dc=domain,dc=tld" />
                 </div>
 
                 <label for="ldap_group_att_{{ $index }}" class="col-sm-4 col-md-3 col-lg-2 margin-sm-top control-label text-left">
-                  Group Membership Attribute
-                  <portainer-tooltip position="bottom" message="LDAP attribute which denotes the group membership."></portainer-tooltip>
+                  组员属性
+                  <portainer-tooltip position="bottom" message="用于表达组员的LDAP属性。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-8 col-md-3 col-lg-4 margin-sm-top">
                   <input type="text" class="form-control" id="ldap_group_att_{{ $index }}" ng-model="groupConfig.GroupAttribute" placeholder="member" />
@@ -344,8 +340,8 @@
               </div>
               <div class="form-group">
                 <label for="ldap_group_filter_{{ $index }}" class="col-sm-4 col-md-2 control-label text-left">
-                  Group Filter
-                  <portainer-tooltip position="bottom" message="The LDAP search filter used to select group elements, optional."></portainer-tooltip>
+                  组过滤器
+                  <portainer-tooltip position="bottom" message="用于选择组元素、选项的LDAP搜索过滤器。"></portainer-tooltip>
                 </label>
                 <div class="col-sm-7 col-md-9">
                   <input type="text" class="form-control" id="ldap_group_filter_{{ $index }}" ng-model="groupConfig.GroupFilter" placeholder="(objectClass=account)" />
@@ -359,7 +355,7 @@
 
               <div class="form-group">
                 <span class="label label-default interactive" style="margin-left: 10px;" ng-click="addGroupSearchConfiguration()">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> add group search configuration
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> 添加组搜索配置
                 </span>
               </div>
             </div>
@@ -421,13 +417,13 @@
 
           <!-- actions -->
           <div class="col-sm-12 form-section-title">
-            Actions
+            操作
           </div>
           <div class="form-group">
             <div class="col-sm-12">
               <button type="button" class="btn btn-primary btn-sm" ng-click="saveSettings()" ng-disabled="state.actionInProgress" button-spinner="state.actionInProgress">
-                <span ng-hide="state.actionInProgress">Save settings</span>
-                <span ng-show="state.actionInProgress">Saving...</span>
+                <span ng-hide="state.actionInProgress">保存设置</span>
+                <span ng-show="state.actionInProgress">正在保存...</span>
               </button>
             </div>
           </div>

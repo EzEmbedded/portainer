@@ -1,24 +1,24 @@
 <rd-header>
-  <rd-header-title title-text="Roles">
-    <a data-toggle="tooltip" title="Refresh" ui-sref="portainer.roles" ui-sref-opts="{reload: true}">
+  <rd-header-title title-text="角色">
+    <a data-toggle="tooltip" title="刷新" ui-sref="portainer.roles" ui-sref-opts="{reload: true}">
       <i class="fa fa-sync" aria-hidden="true"></i>
     </a>
   </rd-header-title>
-  <rd-header-content>Role management</rd-header-content>
+  <rd-header-content>角色管理</rd-header-content>
 </rd-header>
 
-<information-panel title-text="Information">
+<information-panel title-text="信息">
   <span class="small">
     <p class="text-muted">
       <i class="fa fa-user" aria-hidden="true" style="margin-right: 2px;"></i>
-      This feature is available in <a href="https://www.portainer.io/business-upsell?from=k8s-rbac-roles" target="_blank">Portainer Business Edition</a>.
+      此功能只有<a href="https://www.portainer.io/business-upsell?from=k8s-rbac-roles" target="_blank">Portainer 商业版有</a>.
     </p>
   </span>
 </information-panel>
 
 <div class="row">
   <div class="col-sm-12">
-    <roles-datatable title-text="Roles" title-icon="fa-file-code" table-key="roles" order-by="Name"></roles-datatable>
+    <roles-datatable title-text="角色" title-icon="fa-file-code" table-key="roles" order-by="Name"></roles-datatable>
   </div>
 </div>
 
@@ -29,23 +29,23 @@
       <rd-widget-body>
         <form class="form-horizontal">
           <div class="col-sm-12 form-section-title">
-            User
+            用户
           </div>
           <div class="form-group">
             <div class="col-sm-12">
               <span class="small text-muted">
-                No user available
+                没有用户
               </span>
             </div>
           </div>
 
           <div class="col-sm-12 form-section-title">
-            Access
+            访问
           </div>
           <div>
             <div class="small text-muted" style="margin-bottom: 15px;">
               <i class="fa fa-info-circle blue-icon" aria-hidden="true" style="margin-right: 2px;"></i>
-              Effective role for each endpoint will be displayed for the selected user
+              对于每个节点，用户权限将显示出来
             </div>
           </div>
           <access-viewer-datatable table-key="access_viewer" order-by="EndpointName"> </access-viewer-datatable>

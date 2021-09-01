@@ -1,7 +1,7 @@
 <rd-header>
-  <rd-header-title title-text="Registry details"></rd-header-title>
+  <rd-header-title title-text="仓库详情"></rd-header-title>
   <rd-header-content>
-    <a ui-sref="portainer.registries">Registries</a> &gt; <a ui-sref="portainer.registries.registry({id: registry.Id})">{{ registry.Name }}</a>
+    <a ui-sref="portainer.registries">仓库</a> &gt; <a ui-sref="portainer.registries.registry({id: registry.Id})">{{ registry.Name }}</a>
   </rd-header-content>
 </rd-header>
 
@@ -12,23 +12,20 @@
         <form class="form-horizontal">
           <!-- name-input -->
           <div class="form-group">
-            <label for="registry_name" class="col-sm-3 col-lg-2 control-label text-left">Name</label>
+            <label for="registry_name" class="col-sm-3 col-lg-2 control-label text-left">名称</label>
             <div class="col-sm-9 col-lg-10">
-              <input type="text" class="form-control" id="registry_name" ng-model="registry.Name" placeholder="e.g. my-registry" />
+              <input type="text" class="form-control" id="registry_name" ng-model="registry.Name" placeholder="例如： my-registry" />
             </div>
           </div>
           <!-- !name-input -->
           <!-- registry-url-input -->
           <div class="form-group">
             <label for="registry_url" class="col-sm-3 col-lg-2 control-label text-left">
-              Registry URL
-              <portainer-tooltip
-                position="bottom"
-                message="URL or IP address of a Docker registry. Any protocol or trailing slash will be stripped if present."
-              ></portainer-tooltip>
+              仓库 URL
+              <portainer-tooltip position="bottom" message="Docker 仓库的URL或IP地址，如果存在协议或反斜杠，将会被去除。"></portainer-tooltip>
             </label>
             <div class="col-sm-9 col-lg-10">
-              <input type="text" class="form-control" id="registry_url" ng-model="registry.URL" placeholder="e.g. 10.0.0.10:5000 or myregistry.domain.tld" />
+              <input type="text" class="form-control" id="registry_url" ng-model="registry.URL" placeholder="例如： 10.0.0.10:5000 或 myregistry.domain.tld" />
             </div>
           </div>
           <!-- !registry-url-input -->
@@ -36,8 +33,8 @@
           <div class="form-group" ng-if="registry.Type !== RegistryTypes.PROGET">
             <div class="col-sm-12">
               <label for="registry_auth" class="control-label text-left">
-                Authentication
-                <portainer-tooltip position="bottom" message="Enable this option if you need to specify credentials to connect to this registry."></portainer-tooltip>
+                认证
+                <portainer-tooltip position="bottom" message="使能此项在连接到仓库时需要指定数字证书。"></portainer-tooltip>
               </label>
               <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="registry.Authentication" /><i></i> </label>
             </div>
@@ -47,7 +44,7 @@
           <div ng-if="registry.Authentication">
             <!-- credentials-user -->
             <div class="form-group">
-              <label for="credentials_username" class="col-sm-3 col-lg-2 control-label text-left">Username</label>
+              <label for="credentials_username" class="col-sm-3 col-lg-2 control-label text-left">用户名</label>
               <div class="col-sm-9 col-lg-10">
                 <input type="text" class="form-control" id="credentials_username" ng-model="registry.Username" />
               </div>
@@ -55,7 +52,7 @@
             <!-- !credentials-user -->
             <!-- credentials-password -->
             <div class="form-group">
-              <label for="credentials_password" class="col-sm-3 col-lg-2 control-label text-left">Password</label>
+              <label for="credentials_password" class="col-sm-3 col-lg-2 control-label text-left">密码</label>
               <div class="col-sm-9 col-lg-10">
                 <input type="password" class="form-control" id="credentials_password" ng-model="formValues.Password" placeholder="*******" />
               </div>
@@ -69,7 +66,7 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <label class="control-label text-left">
-                  Use organisation registry
+                  使用机构仓库
                 </label>
                 <label class="switch" style="margin-left: 20px;"> <input type="checkbox" ng-model="registry.Quay.UseOrganisation" /><i></i> </label>
               </div>
@@ -78,7 +75,7 @@
             <div ng-if="registry.Quay.UseOrganisation">
               <!-- organisation_name -->
               <div class="form-group">
-                <label for="organisation_name" class="col-sm-3 col-lg-2 control-label text-left">Organisation name</label>
+                <label for="organisation_name" class="col-sm-3 col-lg-2 control-label text-left">机构名</label>
                 <div class="col-sm-9 col-lg-10">
                   <input type="text" class="form-control" id="organisation_name" name="organisation_name" ng-model="registry.Quay.OrganisationName" required />
                 </div>
@@ -96,10 +93,10 @@
                 ng-click="updateRegistry()"
                 button-spinner="state.actionInProgress"
               >
-                <span ng-hide="state.actionInProgress">Update registry</span>
-                <span ng-show="state.actionInProgress">Updating registry...</span>
+                <span ng-hide="state.actionInProgress">更新仓库</span>
+                <span ng-show="state.actionInProgress">正在更新仓库...</span>
               </button>
-              <a type="button" class="btn btn-default btn-sm" ui-sref="portainer.registries">Cancel</a>
+              <a type="button" class="btn btn-default btn-sm" ui-sref="portainer.registries">取消</a>
             </div>
           </div>
         </form>
