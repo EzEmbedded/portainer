@@ -10,7 +10,7 @@
   <div class="sidebar-content">
     <ul class="sidebar">
       <li class="sidebar-list">
-        <a ui-sref="portainer.home" ui-sref-active="active">Home <span class="menu-icon fa fa-home fa-fw"></span></a>
+        <a ui-sref="portainer.home" ui-sref-active="active">主页 <span class="menu-icon fa fa-home fa-fw"></span></a>
       </li>
       <li class="sidebar-title endpoint-name" ng-if="applicationState.endpoint.name">
         <span class="fa fa-plug space-right"></span>{{ applicationState.endpoint.name }}
@@ -37,7 +37,7 @@
         endpoint-id="endpointId"
       ></docker-sidebar-content>
       <li class="sidebar-title" authorization="IntegrationStoridgeAdmin" ng-if="applicationState.endpoint.mode && applicationState.endpoint.extensions.length > 0">
-        <span>Integrations</span>
+        <span>集成</span>
       </li>
       <li
         authorization="IntegrationStoridgeAdmin"
@@ -49,7 +49,7 @@
           applicationState.endpoint.mode.role === 'MANAGER'
         "
       >
-        <a ui-sref="storidge.cluster" ui-sref-active="active">Storidge <span class="menu-icon fa fa-bolt fa-fw"></span></a>
+        <a ui-sref="storidge.cluster" ui-sref-active="active">持久存储 <span class="menu-icon fa fa-bolt fa-fw"></span></a>
         <div
           class="sidebar-sublist"
           ng-if="
@@ -64,7 +64,7 @@
               $state.current.name === 'storidge.cluster.node')
           "
         >
-          <a ui-sref="storidge.monitor" ui-sref-active="active">Monitor</a>
+          <a ui-sref="storidge.monitor" ui-sref-active="active">监视</a>
         </div>
         <div
           class="sidebar-sublist"
@@ -80,7 +80,7 @@
               $state.current.name === 'storidge.cluster.node')
           "
         >
-          <a ui-sref="storidge.profiles" ui-sref-active="active">Profiles</a>
+          <a ui-sref="storidge.profiles" ui-sref-active="active">简介</a>
         </div>
         <div
           class="sidebar-sublist"
@@ -96,26 +96,26 @@
               $state.current.name === 'storidge.cluster.node')
           "
         >
-          <a ui-sref="storidge.drives" ui-sref-active="active">Drives</a>
+          <a ui-sref="storidge.drives" ui-sref-active="active">驱动器</a>
         </div>
       </li>
       <li class="sidebar-title" ng-if="isAdmin && applicationState.application.enableEdgeComputeFeatures">
-        <span>Edge Compute</span>
+        <span>边缘计算</span>
       </li>
       <li class="sidebar-list" ng-if="isAdmin && applicationState.application.enableEdgeComputeFeatures">
-        <a ui-sref="edge.groups" ui-sref-active="active">Edge Groups <span class="menu-icon fa fa-object-group fa-fw"></span></a>
+        <a ui-sref="edge.groups" ui-sref-active="active">边缘组 <span class="menu-icon fa fa-object-group fa-fw"></span></a>
       </li>
       <li class="sidebar-list" ng-if="isAdmin && applicationState.application.enableEdgeComputeFeatures">
-        <a ui-sref="edge.stacks" ui-sref-active="active">Edge Stacks <span class="menu-icon fa fa-layer-group fa-fw"></span></a>
+        <a ui-sref="edge.stacks" ui-sref-active="active">边缘容器栈 <span class="menu-icon fa fa-layer-group fa-fw"></span></a>
       </li>
       <li class="sidebar-list" ng-if="isAdmin && applicationState.application.enableEdgeComputeFeatures">
-        <a ui-sref="edge.jobs" ui-sref-active="active">Edge Jobs <span class="menu-icon fa fa-clock fa-fw"></span></a>
+        <a ui-sref="edge.jobs" ui-sref-active="active">边缘作业 <span class="menu-icon fa fa-clock fa-fw"></span></a>
       </li>
       <li class="sidebar-title" ng-if="isAdmin || isTeamLeader">
-        <span>Settings</span>
+        <span>设置</span>
       </li>
       <li class="sidebar-list" ng-if="isAdmin || isTeamLeader">
-        <a ui-sref="portainer.users" ui-sref-active="active">Users <span class="menu-icon fa fa-users fa-fw"></span></a>
+        <a ui-sref="portainer.users" ui-sref-active="active">用户 <span class="menu-icon fa fa-users fa-fw"></span></a>
         <div
           class="sidebar-sublist"
           ng-if="
@@ -127,7 +127,7 @@
               $state.current.name === 'portainer.roles')
           "
         >
-          <a ui-sref="portainer.teams" ui-sref-active="active">Teams</a>
+          <a ui-sref="portainer.teams" ui-sref-active="active">团队</a>
         </div>
         <div
           class="sidebar-sublist"
@@ -140,14 +140,14 @@
               $state.current.name === 'portainer.roles')
           "
         >
-          <a ui-sref="portainer.roles" ui-sref-active="active">Roles</a>
+          <a ui-sref="portainer.roles" ui-sref-active="active">角色</a>
         </div>
       </li>
       <li class="sidebar-list" ng-if="isAdmin">
         <a
           ui-sref="portainer.endpoints"
           ng-class="{ active: $state.current.name.includes('portainer.endpoints') && $state.current.name !== 'portainer.endpoints.endpoint.kubernetesConfig' }"
-          >Endpoints <span class="menu-icon fa fa-plug fa-fw"></span
+          >节点 <span class="menu-icon fa fa-plug fa-fw"></span
         ></a>
         <div
           class="sidebar-sublist"
@@ -164,7 +164,7 @@
               $state.current.name === 'portainer.tags')
           "
         >
-          <a ui-sref="portainer.groups" ui-sref-active="active">Groups</a>
+          <a ui-sref="portainer.groups" ui-sref-active="active">组</a>
         </div>
         <div
           class="sidebar-sublist"
@@ -181,26 +181,26 @@
               $state.current.name === 'portainer.tags')
           "
         >
-          <a ui-sref="portainer.tags" ui-sref-active="active">Tags</a>
+          <a ui-sref="portainer.tags" ui-sref-active="active">标签</a>
         </div>
       </li>
       <li class="sidebar-list" ng-if="isAdmin">
-        <a ui-sref="portainer.registries" ui-sref-active="active">Registries <span class="menu-icon fa fa-database fa-fw"></span></a>
+        <a ui-sref="portainer.registries" ui-sref-active="active">仓库 <span class="menu-icon fa fa-database fa-fw"></span></a>
       </li>
       <li class="sidebar-list" ng-if="isAdmin">
-        <a ui-sref="portainer.settings" ui-sref-active="active">Settings <span class="menu-icon fa fa-cogs fa-fw"></span></a>
+        <a ui-sref="portainer.settings" ui-sref-active="active">设置 <span class="menu-icon fa fa-cogs fa-fw"></span></a>
         <div class="sidebar-sublist" ng-if="toggle && ($state.current.name === 'portainer.settings' || $state.current.name === 'portainer.settings.authentication') && isAdmin">
-          <a ui-sref="portainer.settings.authentication" ui-sref-active="active">Authentication</a></div
+          <a ui-sref="portainer.settings.authentication" ui-sref-active="active">认证</a></div
         >
         <div class="sidebar-sublist" ng-if="toggle && ($state.current.name === 'portainer.settings' || $state.current.name === 'portainer.settings.authentication')">
-          <a href="http://www.portainer.io/help_about" target="_blank">Help / About</a>
+          <a href="http://www.portainer.io/help_about" target="_blank">帮助 / 关于</a>
         </div>
       </li>
     </ul>
     <div class="sidebar-footer-content">
       <div class="update-notification" ng-if="applicationState.application.versionStatus.UpdateAvailable">
         <a target="_blank" href="https://github.com/portainer/portainer/releases/tag/{{ applicationState.application.versionStatus.LatestVersion }}" style="color: #091e5d;">
-          <i class="fa-lg fas fa-cloud-download-alt" style="margin-right: 2px;"></i> A new version is available
+          <i class="fa-lg fas fa-cloud-download-alt" style="margin-right: 2px;"></i> 有新版本可用
         </a>
       </div>
       <div>
