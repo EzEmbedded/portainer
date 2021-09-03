@@ -81,11 +81,11 @@
         <portainer-tooltip
           ng-if="!$ctrl.isAdmin && $ctrl.availableTeams.length > 1"
           position="bottom"
-          message="As you are a member of multiple teams, you can select which teams(s) will be able to manage this resource."
+          message="如果属于多个团队，可以选择一个团队来决定管理资源的权限。"
         ></portainer-tooltip>
       </label>
       <span ng-if="$ctrl.isAdmin && $ctrl.availableTeams.length === 0" class="small text-muted" style="margin-left: 20px;">
-        You have not yet created any teams. Head over to the <a ui-sref="portainer.teams">Teams view</a> to manage teams.
+        未创建任何团队， 去 <a ui-sref="portainer.teams">团队浏览器</a> 管理团队。
       </span>
       <span
         isteven-multi-select
@@ -97,7 +97,7 @@
         tick-property="selected"
         helper-elements="filter"
         search-property="Name"
-        translation="{nothingSelected: 'Select one or more teams', search: 'Search...'}"
+        translation="{nothingSelected: '选择一个或多个团队', search: '搜索...'}"
         style="margin-left: 20px;"
       >
       </span>
@@ -108,15 +108,11 @@
   <div class="form-group" ng-if="$ctrl.formData.AccessControlEnabled && $ctrl.formData.Ownership === $ctrl.RCO.RESTRICTED && $ctrl.isAdmin">
     <div class="col-sm-12">
       <label for="group-access" class="control-label text-left">
-        Authorized users
-        <portainer-tooltip
-          ng-if="$ctrl.isAdmin && $ctrl.availableUsers.length > 0"
-          position="bottom"
-          message="You can select which user(s) will be able to manage this resource."
-        ></portainer-tooltip>
+        授权用户
+        <portainer-tooltip ng-if="$ctrl.isAdmin && $ctrl.availableUsers.length > 0" position="bottom" message="可选择用户来管理资源。"></portainer-tooltip>
       </label>
       <span ng-if="$ctrl.availableUsers.length === 0" class="small text-muted" style="margin-left: 20px;">
-        You have not yet created any users. Head over to the <a ui-sref="portainer.users">Users view</a> to manage users.
+        未创建任何用户，去 <a ui-sref="portainer.users">用户视图</a> 管理用户。
       </span>
       <span
         isteven-multi-select
@@ -128,7 +124,7 @@
         tick-property="selected"
         helper-elements="filter"
         search-property="Username"
-        translation="{nothingSelected: 'Select one or more users', search: 'Search...'}"
+        translation="{nothingSelected: '选择一个或多个用户', search: '搜索...'}"
         style="margin-left: 20px;"
       >
       </span>
