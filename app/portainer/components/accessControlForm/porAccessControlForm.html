@@ -1,13 +1,13 @@
 <div>
   <div ng-if="!$ctrl.hideTitle" class="col-sm-12 form-section-title">
-    Access control
+    访问控制
   </div>
   <!-- access-control-switch -->
   <div class="form-group">
     <div class="col-sm-12">
       <label for="ownership" class="control-label text-left">
-        Enable access control
-        <portainer-tooltip position="bottom" message="When enabled, you can restrict the access and management of this resource."></portainer-tooltip>
+        使能访问控制
+        <portainer-tooltip position="bottom" message="使能后，可以限制对资源的访问和控制。"></portainer-tooltip>
       </label>
       <label class="switch" style="margin-left: 20px;"> <input name="ownership" type="checkbox" ng-model="$ctrl.formData.AccessControlEnabled" /><i></i> </label>
     </div>
@@ -21,9 +21,9 @@
         <label for="access_administrators">
           <div class="boxselector_header">
             <i ng-class="'administrators' | ownershipicon" aria-hidden="true" style="margin-right: 2px;"></i>
-            Administrators
+            管理员
           </div>
-          <p>I want to restrict the management of this resource to administrators only</p>
+          <p>只有管理员能访问资源</p>
         </label>
       </div>
       <div ng-if="$ctrl.isAdmin">
@@ -31,10 +31,10 @@
         <label for="access_restricted">
           <div class="boxselector_header">
             <i ng-class="'restricted' | ownershipicon" aria-hidden="true" style="margin-right: 2px;"></i>
-            Restricted
+            受限
           </div>
           <p>
-            I want to restrict the management of this resource to a set of users and/or teams
+            只有部分用户或团队可以访问资源
           </p>
         </label>
       </div>
@@ -43,10 +43,10 @@
         <label for="access_private">
           <div class="boxselector_header">
             <i ng-class="'private' | ownershipicon" aria-hidden="true" style="margin-right: 2px;"></i>
-            Private
+            私有
           </div>
           <p>
-            I want to this resource to be manageable by myself only
+            资源自己能访问资源
           </p>
         </label>
       </div>
@@ -55,14 +55,14 @@
         <label for="access_restricted">
           <div class="boxselector_header">
             <i ng-class="'restricted' | ownershipicon" aria-hidden="true" style="margin-right: 2px;"></i>
-            Restricted
+            受限
           </div>
           <p ng-if="$ctrl.availableTeams.length === 1">
-            I want any member of my team (<b>{{ $ctrl.availableTeams[0].Name }}</b
-            >) to be able to manage this resource
+            任何用户和团队均可(<b>{{ $ctrl.availableTeams[0].Name }}</b
+            >)管理资源
           </p>
           <p ng-if="$ctrl.availableTeams.length > 1">
-            I want to restrict the management of this resource to one or more of my teams
+            此资源只有团队中一个或几个人能管理。
           </p>
         </label>
       </div>
@@ -76,12 +76,8 @@
   >
     <div class="col-sm-12">
       <label for="group-access" class="control-label text-left">
-        Authorized teams
-        <portainer-tooltip
-          ng-if="$ctrl.isAdmin && $ctrl.availableTeams.length > 0"
-          position="bottom"
-          message="You can select which teams(s) will be able to manage this resource."
-        ></portainer-tooltip>
+        授权团队
+        <portainer-tooltip ng-if="$ctrl.isAdmin && $ctrl.availableTeams.length > 0" position="bottom" message="指定团队管理资源。"></portainer-tooltip>
         <portainer-tooltip
           ng-if="!$ctrl.isAdmin && $ctrl.availableTeams.length > 1"
           position="bottom"

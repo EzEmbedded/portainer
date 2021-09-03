@@ -2,13 +2,11 @@
   <rd-widget>
     <rd-widget-header icon="{{ $ctrl.titleIcon }}" title-text="{{ $ctrl.titleText }}"> </rd-widget-header>
     <rd-widget-body classes="no-padding">
-      <div class="toolBar small" ng-if="$ctrl.inheritFrom">
-        Access tagged as <code>inherited</code> are inherited from the group access. They cannot be removed or modified at the endpoint level but they can be overriden.
-      </div>
-      <div class="toolBar small" ng-if="$ctrl.inheritFrom"> Access tagged as <code>override</code> are overriding the group access for the related users/teams. </div>
+      <div class="toolBar small" ng-if="$ctrl.inheritFrom"> 访问标记作为<code>继承</code> 从组访问继承而来，在节点层不可修改和删除，但可用重载。 </div>
+      <div class="toolBar small" ng-if="$ctrl.inheritFrom"> 访问标记作为 <code>重载</code> 可以从相关的用户群/团队重载而来。</div>
       <div class="actionBar">
         <button type="button" class="btn btn-sm btn-danger" ng-disabled="$ctrl.state.selectedItemCount === 0" ng-click="$ctrl.removeAction($ctrl.state.selectedItems)">
-          <i class="fa fa-trash-alt space-right" aria-hidden="true"></i>Remove
+          <i class="fa fa-trash-alt space-right" aria-hidden="true"></i>删除
         </button>
       </div>
       <div class="searchBar">
@@ -18,7 +16,7 @@
           class="searchInput"
           ng-model="$ctrl.state.textFilter"
           ng-change="$ctrl.onTextFilterChange()"
-          placeholder="Search..."
+          placeholder="搜索..."
           ng-model-options="{ debounce: 300 }"
         />
       </div>
@@ -32,14 +30,14 @@
                   <label for="select_all"></label>
                 </span>
                 <a ng-click="$ctrl.changeOrderBy('Name')">
-                  Name
+                  名称
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Name' && $ctrl.state.reverseOrder"></i>
                 </a>
               </th>
               <th>
                 <a ng-click="$ctrl.changeOrderBy('Type')">
-                  Type
+                  类型
                   <i class="fa fa-sort-alpha-down" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Type' && !$ctrl.state.reverseOrder"></i>
                   <i class="fa fa-sort-alpha-up" aria-hidden="true" ng-if="$ctrl.state.orderBy === 'Type' && $ctrl.state.reverseOrder"></i>
                 </a>
@@ -57,29 +55,27 @@
                   <label for="select_{{ $index }}"></label>
                 </span>
                 {{ item.Name }}
-                <span ng-if="$ctrl.inheritFrom && item.Inherited" class="text-muted small" style="margin-left: 2px;"
-                  ><code style="font-size: 85% !important;">inherited</code></span
-                >
-                <span ng-if="$ctrl.inheritFrom && item.Override" class="text-muted small" style="margin-left: 2px;"><code style="font-size: 85% !important;">override</code></span>
+                <span ng-if="$ctrl.inheritFrom && item.Inherited" class="text-muted small" style="margin-left: 2px;"><code style="font-size: 85% !important;">继承</code></span>
+                <span ng-if="$ctrl.inheritFrom && item.Override" class="text-muted small" style="margin-left: 2px;"><code style="font-size: 85% !important;">重载</code></span>
               </td>
               <td>{{ item.Type }}</td>
             </tr>
             <tr ng-if="!$ctrl.dataset">
-              <td colspan="4" class="text-center text-muted">Loading...</td>
+              <td colspan="4" class="text-center text-muted">加载中...</td>
             </tr>
             <tr ng-if="$ctrl.state.filteredDataSet.length === 0">
-              <td colspan="4" class="text-center text-muted">No authorized users or teams.</td>
+              <td colspan="4" class="text-center text-muted">无授权用户和团队</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="footer" ng-if="$ctrl.dataset">
-        <div class="infoBar" ng-if="$ctrl.state.selectedItemCount !== 0"> {{ $ctrl.state.selectedItemCount }} item(s) selected </div>
+        <div class="infoBar" ng-if="$ctrl.state.selectedItemCount !== 0"> {{ $ctrl.state.selectedItemCount }} 选中。 </div>
         <div class="paginationControls">
           <form class="form-inline">
             <span class="limitSelector">
               <span style="margin-right: 5px;">
-                Items per page
+                条/页
               </span>
               <select class="form-control" ng-model="$ctrl.state.paginatedItemLimit" ng-change="$ctrl.changePaginationLimit()">
                 <option value="0">All</option>
