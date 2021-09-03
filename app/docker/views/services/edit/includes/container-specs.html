@@ -1,6 +1,6 @@
 <div>
   <rd-widget>
-    <rd-widget-header icon="fa-list-alt" title-text="Container spec"></rd-widget-header>
+    <rd-widget-header icon="fa-list-alt" title-text="容器规格"></rd-widget-header>
     <rd-widget-body classes="no-padding">
       <table class="table">
         <tbody>
@@ -11,27 +11,27 @@
             >
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Command to execute.
+                执行命令
               </p>
             </td>
           </tr>
           <tr>
-            <td>Args</td>
+            <td>平均</td>
             <td
               ><code ng-if="service.Arguments">{{ service.Arguments }}</code></td
             >
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Arguments passed to command in container.
+                容器中传递给命令的实际参数。
               </p>
             </td>
           </tr>
           <tr>
-            <td>User</td>
+            <td>用户</td>
             <td>{{ service.User }}</td>
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Username or UID.
+                用户名或 UID.
               </p>
             </td>
           </tr>
@@ -40,16 +40,16 @@
             <td>{{ service.Dir }}</td>
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Working directory inside the container.
+                容器中的工作目录
               </p>
             </td>
           </tr>
           <tr>
-            <td>Stop grace period</td>
+            <td>正常停止周期</td>
             <td>{{ service.StopGracePeriod }}</td>
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Time to wait before force killing a container (default none).
+                强制杀死容器前的等待时间（缺省：无）。
               </p>
             </td>
           </tr>
