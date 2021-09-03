@@ -45,7 +45,7 @@
             </td>
           </tr>
           <tr>
-            <td>重启的最大尝试次数</td>
+            <td>尝试重启的最多次数</td>
             <td>
               <input
                 class="input-sm"
@@ -57,12 +57,12 @@
             </td>
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Maximum attempts to restart a given task before giving up (default value is 0, which means unlimited).
+                在放弃重启前尝试重启的最多次数（缺省值0，即无限次）。
               </p>
             </td>
           </tr>
           <tr>
-            <td>Restart window</td>
+            <td>重启的时间窗口</td>
             <td>
               <input
                 class="input-sm"
@@ -75,7 +75,7 @@
             </td>
             <td>
               <p class="small text-muted" style="margin-top: 10px;">
-                Time window to evaluate restart attempts expressed by a number followed by unit (ns|us|ms|s|m|h). Default value is 0 seconds, which is unbounded.
+                评估尝试重启的时间窗口，数字后面跟的是时间单位，缺省值0秒，即没有绑定时间。
               </p>
             </td>
           </tr>
@@ -90,14 +90,14 @@
             class="btn btn-primary btn-sm"
             ng-disabled="!hasChanges(service, ['RestartCondition', 'RestartDelay', 'RestartMaxAttempts', 'RestartWindow'])"
             ng-click="updateService(service)"
-            >Apply changes</button
+            >A启用更改</button
           >
           <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li><a ng-click="cancelChanges(service, ['RestartCondition', 'RestartDelay', 'RestartMaxAttempts', 'RestartWindow'])">Reset changes</a></li>
-            <li><a ng-click="cancelChanges(service)">Reset all changes</a></li>
+            <li><a ng-click="cancelChanges(service, ['RestartCondition', 'RestartDelay', 'RestartMaxAttempts', 'RestartWindow'])">重启更改</a></li>
+            <li><a ng-click="cancelChanges(service)">重启全部更改</a></li>
           </ul>
         </div>
       </div>
